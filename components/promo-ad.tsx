@@ -1,7 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
+import { getPromoAd } from "@/lib/content"
 
-export function PromoAd() {
+export async function PromoAd() {
+  const ad = await getPromoAd()
+
   return (
     <section className="py-8 md:py-12 bg-muted/30">
       <div className="container max-w-4xl px-4">
@@ -10,8 +13,8 @@ export function PromoAd() {
           className="block rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border"
         >
           <Image
-            src="/images/ad-new.png"
-            alt="Dr. Matt's Optical Outlet - Clear Savings Is Our Focus. Vision exams only $99, contact lens evaluations only $49. Contact lens price comparison showing significant savings vs competitors and online retailers. Now accepting new patients at 1300 10th Ave SW Suite A, Waverly. Call 319-559-2733 (2SEE). Dr. Matt Pollastrini and Dr. Vonda Capper."
+            src={ad.image}
+            alt={ad.altText}
             width={1280}
             height={900}
             className="w-full h-auto"

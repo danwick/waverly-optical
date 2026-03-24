@@ -100,6 +100,10 @@ export async function getInsurance() {
   }
 }
 
+export async function getPromoAd() {
+  return readContent<{ image: string; altText: string }>('promo-ad')
+}
+
 export async function getDoctors() {
   const data = await readContent<{
     capperName: string

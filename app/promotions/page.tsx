@@ -4,7 +4,7 @@ import { Gift, Glasses, Tag, Percent } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { getBusinessInfo, getPromotion } from "@/lib/content"
+import { getBusinessInfo, getPromotion, getPromoAd } from "@/lib/content"
 import { formatPhoneLink } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -14,9 +14,10 @@ export const metadata: Metadata = {
 }
 
 export default async function PromotionsPage() {
-  const [biz, promo] = await Promise.all([
+  const [biz, promo, ad] = await Promise.all([
     getBusinessInfo(),
     getPromotion(),
+    getPromoAd(),
   ])
 
   return (
@@ -32,8 +33,8 @@ export default async function PromotionsPage() {
         <div className="max-w-3xl mx-auto mb-16">
           <div className="rounded-lg overflow-hidden shadow-lg border border-border">
             <Image
-              src="/images/ad-new.png"
-              alt="Dr. Matt's Optical Outlet announcement"
+              src={ad.image}
+              alt={ad.altText}
               width={1080}
               height={1280}
               className="w-full h-auto"

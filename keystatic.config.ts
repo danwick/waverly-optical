@@ -86,6 +86,24 @@ export default config({
         additionalNote: fields.text({ label: 'Additional Note', multiline: true }),
       },
     }),
+    promoAd: singleton({
+      label: 'Promo Ad Image',
+      path: 'content/promo-ad',
+      format: jsonFormat,
+      schema: {
+        image: fields.image({
+          label: 'Promo Ad Image',
+          description: 'The promotional image shown on the homepage and promotions page',
+          directory: 'public/images',
+          publicPath: '/images',
+        }),
+        altText: fields.text({
+          label: 'Image Alt Text',
+          description: 'Describe what the image shows for accessibility',
+          multiline: true,
+        }),
+      },
+    }),
     doctors: singleton({
       label: 'Doctors',
       path: 'content/doctors',
