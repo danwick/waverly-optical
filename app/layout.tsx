@@ -5,14 +5,13 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnnouncementBar } from "@/components/announcement-bar"
-import { BUSINESS_INFO } from "@/lib/constants"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: `${BUSINESS_INFO.name} | ${BUSINESS_INFO.slogan}`,
-    template: `%s | ${BUSINESS_INFO.name}`,
+    default: "Dr Matt's Optical Outlet | Experience Matters. Price Matters.",
+    template: "%s | Dr Matt's Optical Outlet",
   },
   description:
     "Same experienced care you expect and deserve in the same trusted location—now with lower prices and even better value. Comprehensive eye exams $99, Contact lens exams $49.",
@@ -21,25 +20,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://waverlyoptical.com",
-    siteName: BUSINESS_INFO.name,
-    title: `${BUSINESS_INFO.name} | ${BUSINESS_INFO.slogan}`,
+    siteName: "Dr Matt's Optical Outlet",
+    title: "Dr Matt's Optical Outlet | Experience Matters. Price Matters.",
     description: "Same experienced care, same trusted location—now with lower prices.",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: BUSINESS_INFO.name,
+        alt: "Dr Matt's Optical Outlet",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BUSINESS_INFO.name} | ${BUSINESS_INFO.slogan}`,
+    title: "Dr Matt's Optical Outlet | Experience Matters. Price Matters.",
     description: "Same experienced care, same trusted location—now with lower prices.",
     images: ["/logo.png"],
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({

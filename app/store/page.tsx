@@ -2,18 +2,19 @@ import type { Metadata } from "next"
 import { ExternalLink, Package, Truck, DollarSign } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { EXTERNAL_LINKS } from "@/lib/constants"
+import { getExternalLinks } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Online Store",
   description: "Order contact lenses online with everyday pricing below online retailers. Free shipping available.",
 }
 
-export default function StorePage() {
+export default async function StorePage() {
+  const links = await getExternalLinks()
+
   return (
     <div className="py-16">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Order Contact Lenses Online</h1>
           <p className="text-xl text-muted-foreground text-pretty mb-8">
@@ -21,14 +22,13 @@ export default function StorePage() {
             available.
           </p>
           <Button asChild size="lg">
-            <a href={EXTERNAL_LINKS.store} target="_blank" rel="noopener noreferrer">
+            <a href={links.store} target="_blank" rel="noopener noreferrer">
               Visit Our Online Store
               <ExternalLink className="h-5 w-5 ml-2" />
             </a>
           </Button>
         </div>
 
-        {/* Features */}
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <Card>
             <CardContent className="pt-6 text-center">
@@ -67,7 +67,6 @@ export default function StorePage() {
           </Card>
         </div>
 
-        {/* Info Section */}
         <div className="mt-16 max-w-3xl mx-auto">
           <div className="bg-muted/50 rounded-lg p-8">
             <h2 className="text-2xl font-bold mb-4">Need a Contact Lens Exam?</h2>

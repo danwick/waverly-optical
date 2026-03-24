@@ -1,8 +1,13 @@
 import { Check } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { PRICING, EXTERNAL_LINKS } from "@/lib/constants"
+import { getPricing, getExternalLinks } from "@/lib/content"
 
-export function PricingCards() {
+export async function PricingCards() {
+  const [pricing, links] = await Promise.all([
+    getPricing(),
+    getExternalLinks(),
+  ])
+
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -12,58 +17,40 @@ export function PricingCards() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Eye Exam Card */}
           <Card className="relative overflow-hidden border-2 hover:shadow-lg transition-shadow">
             <CardHeader className="bg-gradient-to-br from-primary/5 to-secondary/10">
-              <CardTitle className="text-2xl">{PRICING.eyeExam.title}</CardTitle>
+              <CardTitle className="text-2xl">{pricing.eyeExam.title}</CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
               <div className="mb-6">
-                <span className="text-5xl font-bold text-primary">${PRICING.eyeExam.price}</span>
+                <span className="text-5xl font-bold text-primary">${pricing.eyeExam.price}</span>
               </div>
               <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Complete eye health evaluation</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Retinal photography included</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Refraction for glasses prescription</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Personalized treatment plan</span>
-                </li>
+                {pricing.eyeExam.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
               </ul>
             </CardContent>
           </Card>
 
-          {/* Contact Lens Exam Card */}
           <Card className="relative overflow-hidden border-2 hover:shadow-lg transition-shadow">
             <CardHeader className="bg-gradient-to-br from-secondary/5 to-primary/10">
-              <CardTitle className="text-2xl">{PRICING.contactLensExam.title}</CardTitle>
+              <CardTitle className="text-2xl">{pricing.contactLensExam.title}</CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
               <div className="mb-6">
-                <span className="text-5xl font-bold text-primary">${PRICING.contactLensExam.price}</span>
+                <span className="text-5xl font-bold text-primary">${pricing.contactLensExam.price}</span>
               </div>
               <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Flat rate for any prescription</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Trial lenses provided</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Follow-up care included</span>
-                </li>
+                {pricing.contactLensExam.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
               </ul>
             </CardContent>
           </Card>
@@ -73,7 +60,7 @@ export function PricingCards() {
           <p className="text-lg mb-4">
             Visit our online contact lens store{" "}
             <a
-              href={EXTERNAL_LINKS.store}
+              href={links.store}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary font-semibold hover:underline"

@@ -1,0 +1,10 @@
+{
+  "eyeExamPrice": 99,
+  "eyeExamTitle": "Vision Eye Exam",
+  "eyeExamDescription": "Includes retinal photography and refraction",
+  "eyeExamFeatures": "Complete eye health evaluation\nRetinal photography included\nRefraction for glasses prescription\nPersonalized treatment plan",
+  "contactLensPrice": 49,
+  "contactLensTitle": "Contact Lens Exam",
+  "contactLensDescription": "Flat rate for any prescription",
+  "contactLensFeatures": "Flat rate for any prescription\nTrial lenses provided\nFollow-up care included"
+}

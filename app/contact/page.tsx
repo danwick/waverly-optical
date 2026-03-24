@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { ContactSection } from "@/components/contact-section"
 import { Button } from "@/components/ui/button"
 import { Phone, Mail } from "lucide-react"
-import { BUSINESS_INFO } from "@/lib/constants"
+import { getBusinessInfo } from "@/lib/content"
 import { formatPhoneLink } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -11,11 +11,12 @@ export const metadata: Metadata = {
     "Contact Dr Matt's Optical Outlet. Visit us at 1300 10th Avenue SW, Waverly, IA or call 319-559-2SEE (2733).",
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const biz = await getBusinessInfo()
+
   return (
     <div className="py-16">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl text-muted-foreground text-pretty mb-8">
@@ -24,9 +25,9 @@ export default function ContactPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
-              <a href={formatPhoneLink(BUSINESS_INFO.phone)}>
+              <a href={formatPhoneLink(biz.phone)}>
                 <Phone className="h-5 w-5 mr-2" />
-                Call {BUSINESS_INFO.phoneDisplay}
+                Call {biz.phoneDisplay}
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">
@@ -38,10 +39,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Contact Section */}
         <ContactSection />
 
-        {/* Additional Info */}
         <div className="mt-16 max-w-3xl mx-auto">
           <div className="bg-muted/50 rounded-lg p-8">
             <h2 className="text-2xl font-bold mb-4">New Patients Welcome</h2>

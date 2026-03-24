@@ -1,8 +1,10 @@
 import { Shield, Heart } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { INSURANCE_PROVIDERS } from "@/lib/constants"
+import { getInsurance } from "@/lib/content"
 
-export function InsuranceSection() {
+export async function InsuranceSection() {
+  const insurance = await getInsurance()
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -14,7 +16,6 @@ export function InsuranceSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Vision Insurance */}
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-4">
@@ -24,7 +25,7 @@ export function InsuranceSection() {
                 <h3 className="text-xl font-semibold">Vision Plans</h3>
               </div>
               <ul className="space-y-2">
-                {INSURANCE_PROVIDERS.vision.map((provider) => (
+                {insurance.vision.map((provider) => (
                   <li key={provider} className="flex items-center gap-2">
                     <div className="h-2 w-2 bg-secondary rounded-full" />
                     <span>{provider}</span>
@@ -34,7 +35,6 @@ export function InsuranceSection() {
             </CardContent>
           </Card>
 
-          {/* Medical Insurance */}
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-4">
@@ -44,7 +44,7 @@ export function InsuranceSection() {
                 <h3 className="text-xl font-semibold">Medical Plans</h3>
               </div>
               <ul className="space-y-2">
-                {INSURANCE_PROVIDERS.medical.map((provider) => (
+                {insurance.medical.map((provider) => (
                   <li key={provider} className="flex items-center gap-2">
                     <div className="h-2 w-2 bg-primary rounded-full" />
                     <span>{provider}</span>
@@ -56,8 +56,7 @@ export function InsuranceSection() {
         </div>
 
         <p className="text-center mt-8 text-muted-foreground max-w-3xl mx-auto">
-          Accepting most vision plans including VSP, EyeMed, Avesis, and Spectera. Accepting most medical plans
-          including Medicare and Blue Cross Blue Shield.
+          {insurance.additionalNote}
         </p>
       </div>
     </section>

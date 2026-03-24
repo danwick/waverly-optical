@@ -1,12 +1,16 @@
 import { MapPin, Phone, Clock, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { BUSINESS_INFO, EXTERNAL_LINKS } from "@/lib/constants"
+import { getBusinessInfo, getExternalLinks } from "@/lib/content"
 import { formatPhoneLink } from "@/lib/utils"
 import { getMapEmbedUrl } from "@/app/actions/get-map-url"
 
 export async function ContactSection() {
-  const mapUrl = await getMapEmbedUrl()
+  const [biz, links, mapUrl] = await Promise.all([
+    getBusinessInfo(),
+    getExternalLinks(),
+    getMapEmbedUrl(),
+  ])
 
   return (
     <section className="py-16">
@@ -17,7 +21,6 @@ export async function ContactSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Contact Info */}
           <div className="space-y-6">
             <Card>
               <CardContent className="pt-6">
@@ -27,9 +30,9 @@ export async function ContactSection() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Address</h3>
-                    <p className="text-muted-foreground">{BUSINESS_INFO.address.full}</p>
+                    <p className="text-muted-foreground">{biz.address.full}</p>
                     <Button asChild variant="link" className="px-0 mt-2" size="sm">
-                      <a href={EXTERNAL_LINKS.googleMaps} target="_blank" rel="noopener noreferrer">
+                      <a href={links.googleMaps} target="_blank" rel="noopener noreferrer">
                         Get Directions
                         <ExternalLink className="h-3 w-3 ml-1" />
                       </a>
@@ -48,10 +51,10 @@ export async function ContactSection() {
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Phone</h3>
                     <a
-                      href={formatPhoneLink(BUSINESS_INFO.phone)}
+                      href={formatPhoneLink(biz.phone)}
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      {BUSINESS_INFO.phoneDisplay}
+                      {biz.phoneDisplay}
                     </a>
                   </div>
                 </div>
@@ -69,11 +72,11 @@ export async function ContactSection() {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Monday - Thursday:</span>
-                        <span className="font-medium">8:30 AM - 5:00 PM</span>
+                        <span className="font-medium">{biz.hours.monday}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Friday - Sunday:</span>
-                        <span className="font-medium">Closed</span>
+                        <span className="font-medium">{biz.hours.friday}</span>
                       </div>
                     </div>
                   </div>
@@ -82,7 +85,6 @@ export async function ContactSection() {
             </Card>
           </div>
 
-          {/* Map */}
           <div className="h-[500px] rounded-lg overflow-hidden shadow-lg">
             <iframe
               src={mapUrl}
@@ -92,7 +94,7 @@ export async function ContactSection() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Dr Matt's Optical Outlet Location"
+              title={`${biz.name} Location`}
             />
           </div>
         </div>

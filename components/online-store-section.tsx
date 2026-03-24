@@ -1,7 +1,10 @@
 import { ExternalLink, Glasses, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getExternalLinks } from "@/lib/content"
 
-export function OnlineStoreSection() {
+export async function OnlineStoreSection() {
+  const links = await getExternalLinks()
+
   return (
     <section className="py-16 bg-gradient-to-br from-primary to-[#1a1b3a] text-primary-foreground">
       <div className="container mx-auto px-4">
@@ -25,7 +28,7 @@ export function OnlineStoreSection() {
 
           <Button asChild size="lg" variant="secondary" className="text-base font-semibold">
             <a
-              href="https://yourstore.wewillship.com/?account_id=5699A"
+              href={links.store}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2"

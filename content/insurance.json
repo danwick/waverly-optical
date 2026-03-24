@@ -1,0 +1,5 @@
+{
+  "visionProviders": "VSP\nEyeMed\nAvesis\nSpectera",
+  "medicalProviders": "Medicare\nBlue Cross Blue Shield",
+  "additionalNote": "Accepting most vision plans including VSP, EyeMed, Avesis, and Spectera. Accepting most medical plans including Medicare and Blue Cross Blue Shield."
+}

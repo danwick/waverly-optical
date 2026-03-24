@@ -1,12 +1,14 @@
 import Link from "next/link"
 import Image from "next/image"
 import { MapPin, Phone } from "lucide-react"
-import { BUSINESS_INFO } from "@/lib/constants"
+import { getBusinessInfo, getDoctors } from "@/lib/content"
 import { formatPhoneLink } from "@/lib/utils"
-import { shouldShowDrMattContent } from "@/lib/date-gate"
 
-export function Footer() {
-  const showLegalNote = shouldShowDrMattContent()
+export async function Footer() {
+  const [biz, doctors] = await Promise.all([
+    getBusinessInfo(),
+    getDoctors(),
+  ])
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -16,12 +18,12 @@ export function Footer() {
           <div>
             <Image
               src="/logo.png"
-              alt={BUSINESS_INFO.name}
+              alt={biz.name}
               width={80}
               height={80}
               className="h-16 w-auto mb-4 brightness-0 invert"
             />
-            <p className="text-sm opacity-90">{BUSINESS_INFO.slogan}</p>
+            <p className="text-sm opacity-90">{biz.slogan}</p>
           </div>
 
           {/* Quick Links */}
@@ -57,12 +59,12 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span className="opacity-90">{BUSINESS_INFO.address.full}</span>
+                <span className="opacity-90">{biz.address.full}</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <a href={formatPhoneLink(BUSINESS_INFO.phone)} className="hover:underline opacity-90">
-                  {BUSINESS_INFO.phoneDisplay}
+                <a href={formatPhoneLink(biz.phone)} className="hover:underline opacity-90">
+                  {biz.phoneDisplay}
                 </a>
               </li>
             </ul>
@@ -74,17 +76,17 @@ export function Footer() {
             <ul className="space-y-1 text-sm opacity-90">
               <li className="flex justify-between gap-4">
                 <span>Mon - Thu:</span>
-                <span>8:30 AM - 5:00 PM</span>
+                <span>{biz.hours.monday}</span>
               </li>
               <li className="flex justify-between gap-4">
                 <span>Fri - Sun:</span>
-                <span>Closed</span>
+                <span>{biz.hours.friday}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {showLegalNote && (
+        {doctors.showDrMatt && (
           <div className="mt-8 pt-8 border-t border-primary-foreground/20">
             <p className="text-sm opacity-90 max-w-3xl">
               Please note: Dr. Matt is no longer associated with any other eye care practice or new building in Waverly.
@@ -95,7 +97,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-primary-foreground/20 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm opacity-90">
           <p>
-            &copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {biz.name}. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:underline">
