@@ -1,6 +1,6 @@
 import { config, fields, singleton } from '@keystatic/core'
 
-const isProd = process.env.KEYSTATIC_GITHUB_CLIENT_ID !== undefined
+const isProd = !!process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_MODE
 
 const jsonFormat = { data: 'json' as const }
 
