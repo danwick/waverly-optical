@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
+  outputFileTracingIncludes: {
+    '/**': ['./content/**/*.json'],
   },
   typescript: {
     ignoreBuildErrors: true,

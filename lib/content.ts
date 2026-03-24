@@ -1,8 +1,31 @@
-import { reader } from './reader'
+import fs from 'fs/promises'
+import path from 'path'
+
+async function readContent<T>(name: string): Promise<T> {
+  const filePath = path.join(process.cwd(), 'content', `${name}.json`)
+  const raw = await fs.readFile(filePath, 'utf-8')
+  return JSON.parse(raw)
+}
+
+interface BusinessInfoData {
+  name: string
+  shortName: string
+  slogan: string
+  phone: string
+  phoneDisplay: string
+  street: string
+  city: string
+  state: string
+  zip: string
+  mondayThursday: string
+  friday: string
+  saturday: string
+  sunday: string
+  storeUrl: string
+}
 
 export async function getBusinessInfo() {
-  const data = await reader.singletons.businessInfo.read()
-  if (!data) throw new Error('Business info content not found')
+  const data = await readContent<BusinessInfoData>('business-info')
   return {
     name: data.name,
     shortName: data.shortName,
@@ -30,20 +53,24 @@ export async function getBusinessInfo() {
 }
 
 export async function getHero() {
-  const data = await reader.singletons.hero.read()
-  if (!data) throw new Error('Hero content not found')
-  return data
+  return readContent<{ headline: string; subheadline: string; description: string; examPrice: string }>('hero')
 }
 
 export async function getAnnouncement() {
-  const data = await reader.singletons.announcement.read()
-  if (!data) throw new Error('Announcement content not found')
-  return data
+  return readContent<{ message: string; enabled: boolean }>('announcement')
 }
 
 export async function getPricing() {
-  const data = await reader.singletons.pricing.read()
-  if (!data) throw new Error('Pricing content not found')
+  const data = await readContent<{
+    eyeExamPrice: number
+    eyeExamTitle: string
+    eyeExamDescription: string
+    eyeExamFeatures: string
+    contactLensPrice: number
+    contactLensTitle: string
+    contactLensDescription: string
+    contactLensFeatures: string
+  }>('pricing')
   return {
     eyeExam: {
       price: data.eyeExamPrice,
@@ -61,14 +88,11 @@ export async function getPricing() {
 }
 
 export async function getPromotion() {
-  const data = await reader.singletons.promotion.read()
-  if (!data) throw new Error('Promotion content not found')
-  return data
+  return readContent<{ title: string; description: string; eligibility: string; enabled: boolean }>('promotion')
 }
 
 export async function getInsurance() {
-  const data = await reader.singletons.insurance.read()
-  if (!data) throw new Error('Insurance content not found')
+  const data = await readContent<{ visionProviders: string; medicalProviders: string; additionalNote: string }>('insurance')
   return {
     vision: data.visionProviders.split('\n').filter(Boolean),
     medical: data.medicalProviders.split('\n').filter(Boolean),
@@ -77,8 +101,15 @@ export async function getInsurance() {
 }
 
 export async function getDoctors() {
-  const data = await reader.singletons.doctors.read()
-  if (!data) throw new Error('Doctors content not found')
+  const data = await readContent<{
+    capperName: string
+    capperCredentials: string
+    capperBio: string
+    drMattName: string
+    drMattCredentials: string
+    drMattBio: string
+    showDrMatt: boolean
+  }>('doctors')
   return {
     capper: {
       name: data.capperName,
