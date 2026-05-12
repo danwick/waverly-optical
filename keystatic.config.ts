@@ -1,13 +1,14 @@
 import { config, fields, singleton } from '@keystatic/core'
 
-const isProd = !!process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_MODE
+const isCloud = !!process.env.NEXT_PUBLIC_KEYSTATIC_CLOUD_MODE
 
 const jsonFormat = { data: 'json' as const }
 
 export default config({
-  storage: isProd
-    ? { kind: 'github' as const, repo: 'danwick/waverly-optical' as const }
+  storage: isCloud
+    ? { kind: 'cloud' as const }
     : { kind: 'local' as const },
+  cloud: { project: 'waverly-optical/waverly-optical' },
   singletons: {
     businessInfo: singleton({
       label: 'Business Info',
