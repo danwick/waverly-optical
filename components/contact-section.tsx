@@ -13,7 +13,7 @@ export async function ContactSection() {
   ])
 
   return (
-    <section className="py-16">
+    <section id="visit" className="py-16 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Visit Us</h2>

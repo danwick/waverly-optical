@@ -31,23 +31,18 @@ export async function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/services" className="hover:underline opacity-90">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/doctors" className="hover:underline opacity-90">
+                <Link href="/#doctors" className="hover:underline opacity-90">
                   Our Doctors
                 </Link>
               </li>
               <li>
-                <Link href="/promotions" className="hover:underline opacity-90">
-                  Promotions
+                <Link href="/#insurance" className="hover:underline opacity-90">
+                  Insurance
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:underline opacity-90">
-                  Contact Us
+                <Link href="/#visit" className="hover:underline opacity-90">
+                  Visit Us
                 </Link>
               </li>
             </ul>

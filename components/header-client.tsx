@@ -8,11 +8,9 @@ import { Button } from "@/components/ui/button"
 import { formatPhoneLink, cn } from "@/lib/utils"
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "Doctors", href: "/doctors" },
-  { name: "Promotions", href: "/promotions" },
-  { name: "Contact", href: "/contact" },
+  { name: "Doctors", href: "/#doctors" },
+  { name: "Insurance", href: "/#insurance" },
+  { name: "Visit Us", href: "/#visit" },
 ]
 
 export function HeaderClient({ name, slogan, phone }: { name: string; slogan: string; phone: string }) {

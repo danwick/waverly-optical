@@ -56,41 +56,6 @@ export async function getHero() {
   return readContent<{ headline: string; subheadline: string; description: string; examPrice: string }>('hero')
 }
 
-export async function getAnnouncement() {
-  return readContent<{ message: string; enabled: boolean }>('announcement')
-}
-
-export async function getPricing() {
-  const data = await readContent<{
-    eyeExamPrice: number
-    eyeExamTitle: string
-    eyeExamDescription: string
-    eyeExamFeatures: string
-    contactLensPrice: number
-    contactLensTitle: string
-    contactLensDescription: string
-    contactLensFeatures: string
-  }>('pricing')
-  return {
-    eyeExam: {
-      price: data.eyeExamPrice,
-      title: data.eyeExamTitle,
-      description: data.eyeExamDescription,
-      features: data.eyeExamFeatures.split('\n').filter(Boolean),
-    },
-    contactLensExam: {
-      price: data.contactLensPrice,
-      title: data.contactLensTitle,
-      description: data.contactLensDescription,
-      features: data.contactLensFeatures.split('\n').filter(Boolean),
-    },
-  }
-}
-
-export async function getPromotion() {
-  return readContent<{ title: string; description: string; eligibility: string; enabled: boolean }>('promotion')
-}
-
 export async function getInsurance() {
   const data = await readContent<{ visionProviders: string; medicalProviders: string; additionalNote: string }>('insurance')
   return {
@@ -98,10 +63,6 @@ export async function getInsurance() {
     medical: data.medicalProviders.split('\n').filter(Boolean),
     additionalNote: data.additionalNote,
   }
-}
-
-export async function getPromoAd() {
-  return readContent<{ image: string; altText: string }>('promo-ad')
 }
 
 export async function getDoctors() {

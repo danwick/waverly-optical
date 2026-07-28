@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return ['/services', '/doctors', '/promotions', '/contact', '/store', '/keystatic'].map((source) => ({
+      source,
+      destination: '/',
+      permanent: true,
+    }))
+  },
   outputFileTracingIncludes: {
     '/**': ['./content/**/*.json'],
   },

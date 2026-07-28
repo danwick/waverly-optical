@@ -4,22 +4,22 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { AnnouncementBar } from "@/components/announcement-bar"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.po2vision.com"),
   title: {
     default: "Dr Matt's Optical Outlet | Experience Matters. Price Matters.",
     template: "%s | Dr Matt's Optical Outlet",
   },
   description:
-    "Same experienced care you expect and deserve in the same trusted location—now with lower prices and even better value. Comprehensive eye exams $99, Contact lens exams $49.",
+    "Locally owned eye care in Waverly, Iowa. Comprehensive eye exams, contact lenses, and eyewear from doctors with over 30 years of experience. 1300 10th Avenue SW, Suite A.",
   keywords: ["optometry", "eye care", "Waverly IA", "eye exam", "contact lenses", "eyewear", "vision care"],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://waverlyoptical.com",
+    url: "https://www.po2vision.com",
     siteName: "Dr Matt's Optical Outlet",
     title: "Dr Matt's Optical Outlet | Experience Matters. Price Matters.",
     description: "Same experienced care, same trusted location—now with lower prices.",
@@ -67,7 +67,6 @@ export default function RootLayout({
         )}
       </head>
       <body className={inter.className}>
-        <AnnouncementBar />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

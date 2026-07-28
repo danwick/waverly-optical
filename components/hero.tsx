@@ -1,4 +1,4 @@
-import { Phone, MapPin, Calendar } from "lucide-react"
+import { Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getBusinessInfo, getHero, getExternalLinks } from "@/lib/content"
 import { formatPhoneLink } from "@/lib/utils"
@@ -27,17 +27,6 @@ export async function Hero() {
               <a href={formatPhoneLink(biz.phone)}>
                 <Phone className="h-5 w-5 mr-2" />
                 Call Now
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="text-base font-semibold bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-            >
-              <a href="/contact">
-                <Calendar className="h-5 w-5 mr-2" />
-                Schedule Your Exam ({hero.examPrice})
               </a>
             </Button>
             <Button
