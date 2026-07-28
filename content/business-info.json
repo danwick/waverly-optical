@@ -8,9 +8,5 @@
   "city": "Waverly",
   "state": "IA",
   "zip": "50677",
-  "mondayThursday": "8:30 AM - 5:00 PM",
-  "friday": "Closed",
-  "saturday": "Closed",
-  "sunday": "Closed",
-  "storeUrl": "https://yourstore.wewillship.com/?account_id=5699A"
+  "hours": "By appointment"
 }

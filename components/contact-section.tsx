@@ -69,16 +69,7 @@ export async function ContactSection() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg mb-3">Hours</h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Monday - Thursday:</span>
-                        <span className="font-medium">{biz.hours.monday}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Friday - Sunday:</span>
-                        <span className="font-medium">{biz.hours.friday}</span>
-                      </div>
-                    </div>
+                    <p className="text-sm font-medium">{biz.hours}</p>
                   </div>
                 </div>
               </CardContent>

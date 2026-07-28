@@ -68,23 +68,14 @@ export async function Footer() {
           {/* Hours */}
           <div>
             <h3 className="font-semibold mb-4">Hours</h3>
-            <ul className="space-y-1 text-sm opacity-90">
-              <li className="flex justify-between gap-4">
-                <span>Mon - Thu:</span>
-                <span>{biz.hours.monday}</span>
-              </li>
-              <li className="flex justify-between gap-4">
-                <span>Fri - Sun:</span>
-                <span>{biz.hours.friday}</span>
-              </li>
-            </ul>
+            <p className="text-sm opacity-90">{biz.hours}</p>
           </div>
         </div>
 
         {doctors.showDrMatt && (
           <div className="mt-8 pt-8 border-t border-primary-foreground/20">
             <p className="text-sm opacity-90 max-w-3xl">
-              Please note: Dr. Matt is no longer associated with any other eye care practice or new building in Waverly.
+              Please note: Dr. Matt Pollastrini is no longer associated with any other eye care practice or new building in Waverly.
             </p>
           </div>
         )}

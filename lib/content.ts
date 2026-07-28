@@ -17,11 +17,7 @@ interface BusinessInfoData {
   city: string
   state: string
   zip: string
-  mondayThursday: string
-  friday: string
-  saturday: string
-  sunday: string
-  storeUrl: string
+  hours: string
 }
 
 export async function getBusinessInfo() {
@@ -39,16 +35,7 @@ export async function getBusinessInfo() {
       zip: data.zip,
       full: `${data.street}, ${data.city}, ${data.state} ${data.zip}`,
     },
-    hours: {
-      monday: data.mondayThursday,
-      tuesday: data.mondayThursday,
-      wednesday: data.mondayThursday,
-      thursday: data.mondayThursday,
-      friday: data.friday,
-      saturday: data.saturday,
-      sunday: data.sunday,
-    },
-    storeUrl: data.storeUrl,
+    hours: data.hours,
   }
 }
 
@@ -95,7 +82,6 @@ export async function getDoctors() {
 export async function getExternalLinks() {
   const biz = await getBusinessInfo()
   return {
-    store: biz.storeUrl,
     googleMaps: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(biz.address.full)}`,
   }
 }
