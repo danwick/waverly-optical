@@ -9,8 +9,8 @@ export function ContinuitySection() {
           {/* Image */}
           <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
             <Image
-              src="/modern-optometry-clinic-interior-with-exam-equipme.jpg"
-              alt="Dr Matt's Optical Outlet clinic interior"
+              src="/dr-matts-optical-outlet-storefront.jpg"
+              alt="Dr Matt's Optical Outlet storefront at 1300 10th Avenue SW in Waverly"
               fill
               className="object-cover"
             />
