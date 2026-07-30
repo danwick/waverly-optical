@@ -51,6 +51,7 @@ export async function DoctorsSection() {
                     {doctors.drMatt.name}, {doctors.drMatt.credentials}
                   </h3>
                   <p className="text-lg text-muted-foreground leading-relaxed">{doctors.drMatt.bio}</p>
+                  <p className="mt-6 font-bold">{doctors.drMatt.disclaimer}</p>
                 </CardContent>
               </div>
             </Card>

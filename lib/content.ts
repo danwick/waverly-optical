@@ -60,6 +60,7 @@ export async function getDoctors() {
     drMattName: string
     drMattCredentials: string
     drMattBio: string
+    drMattDisclaimer: string
     showDrMatt: boolean
   }>('doctors')
   return {
@@ -73,6 +74,7 @@ export async function getDoctors() {
       name: data.drMattName,
       credentials: data.drMattCredentials,
       bio: data.drMattBio,
+      disclaimer: data.drMattDisclaimer,
       image: '/dr-matt.jpg',
     },
     showDrMatt: data.showDrMatt,

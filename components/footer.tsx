@@ -1,14 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import { MapPin, Phone } from "lucide-react"
-import { getBusinessInfo, getDoctors } from "@/lib/content"
+import { getBusinessInfo } from "@/lib/content"
 import { formatPhoneLink } from "@/lib/utils"
 
 export async function Footer() {
-  const [biz, doctors] = await Promise.all([
-    getBusinessInfo(),
-    getDoctors(),
-  ])
+  const biz = await getBusinessInfo()
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -71,14 +68,6 @@ export async function Footer() {
             <p className="text-sm opacity-90">{biz.hours}</p>
           </div>
         </div>
-
-        {doctors.showDrMatt && (
-          <div className="mt-8 pt-8 border-t border-primary-foreground/20">
-            <p className="text-sm opacity-90 max-w-3xl">
-              Please note: Dr. Matt Pollastrini is no longer associated with any other eye care practice or new building in Waverly.
-            </p>
-          </div>
-        )}
 
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-primary-foreground/20 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm opacity-90">
